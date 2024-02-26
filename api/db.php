@@ -3,7 +3,7 @@ date_default_timezone_set("Asia/Taipei");
 session_start();
 class DB
 {
-    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=c2-03";
+    protected $dsn = "mysql:host=localhost;charset=utf8;dbname=c2-04";
     protected $pdo;
     protected $table;
     public function __construct($table)
@@ -95,7 +95,7 @@ class DB
         $sql = $this->sql_all($sql, $where, $other);
         return $this->pdo->query($sql)->fetchColumn();
     }
-    private function math($math, $col, $array='', $other='')
+    private function math($math, $col, $array = '', $other = '')
     {
         $sql = "select $math(`$col`) from `$this->table` ";
         $sql = $this->sql_all($sql, $array, $other);
@@ -125,9 +125,10 @@ if (!isset($_SESSION['visited'])) {
         $total['total']++;
         $Total->save($total);
     } else {
-        $Total->save(['total' => 1, 'date' => date('Y-m-d')]);
+        $Total->save(['date' => date('Y-m-d'), 'total' => 1]);
+
     }
-    $_SESSION['visited']=1;
+    $_SESSION['visited'] = 1;
 }
 function dd($array)
 {
