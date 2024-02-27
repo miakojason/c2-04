@@ -7,7 +7,7 @@
 </fieldset>
 <script>
  function forget(){
-    $.get("./api/forget.php",{email:$("#eamil").val()},(res)=>{
+    $.post("./api/forget.php",{email:$("#email").val()},(res)=>{
         $(".result").text(res)
     })
  }
