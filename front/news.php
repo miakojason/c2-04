@@ -16,10 +16,10 @@
         foreach ($news as $new) {
         ?>
             <tr>
-                <td class="clo"><?= $new['title']; ?></td>
+                <td class="clo title" data-id="<?= $new['id']; ?>"><?= $new['title']; ?></td>
                 <td>
                     <div id="s<?= $new['id']; ?>"><?= mb_substr($new['text'], 0, 20); ?>...</div>
-                    <div id="s<?= $new['id']; ?>" style="display:none"><?=$new['text']?></div>
+                    <div id="a<?= $new['id']; ?>" style="display:none"><?= $new['text'] ?></div>
                 </td>
                 <td>
                     <?php
@@ -59,6 +59,11 @@
     </div>
 </fieldset>
 <script>
+    $(".title").on('click',function(){
+        let id=$(this).data('id')
+        $("#s"+id).toggle()
+        $("#a"+id).toggle()
+    })
     function good(id) {
         $.post("./api/good.php", {
             id
