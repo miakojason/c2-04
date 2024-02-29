@@ -19,6 +19,7 @@
                 <td class="clo"><?= $new['title']; ?></td>
                 <td>
                     <div id="s<?= $new['id']; ?>"><?= mb_substr($new['text'], 0, 20); ?>...</div>
+                    <div id="s<?= $new['id']; ?>" style="display:none"><?=$new['text']?></div>
                 </td>
                 <td>
                     <?php
