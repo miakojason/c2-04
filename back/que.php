@@ -8,6 +8,7 @@
             <div class="clo opt">
                 選項<input type="text" name="option[]" id=""><input type="button" value="更多" onclick="more()">
             </div>
+            <div><input type="submit" value="新增">|<input type="reset" value="清空"></div>
     </form>
 </fieldset>
 <script>
