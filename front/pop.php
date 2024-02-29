@@ -1,3 +1,16 @@
+<style>
+    .pop {
+        background: rgba(51, 51, 51, 0.8);
+        color: #FFF;
+        min-height: 100px;
+        width: 300px;
+        height: 300px;
+        position: absolute;
+        display: none;
+        z-index: 9999;
+        overflow: auto;
+    }
+</style>
 <fieldset>
     <legend>目前位置:首頁>人氣文章區</legend>
     <table>
@@ -16,11 +29,14 @@
         foreach ($news as $new) {
         ?>
             <tr>
-                <td class="clo"><?= $new['title']; ?></td>
+                <td class="clo title" data-id="<?= $new['id']; ?>"><?= $new['title']; ?></td>
                 <td>
                     <div id="s<?= $new['id']; ?>"><?= mb_substr($new['text'], 0, 20); ?>...</div>
+                    <div class="pop" id="a<?= $new['id']; ?>" style="display:none">
+                        <h3 style="color:aqua"><?= $new['title']; ?></h3><?= $new['text'] ?>
+                    </div>
                 </td>
-                <td>
+                <td><span><?= $new['good']; ?>個人說</span><img src="./icon/02B03.jpg" style="width:15px">
                     <?php
                     if (isset($_SESSION['user'])) {
                         if ($Log->count(['news' => $new['id'], 'acc' => $_SESSION['user']]) > 0) {
@@ -58,6 +74,12 @@
     </div>
 </fieldset>
 <script>
+    $(".title").hover(function() {
+        $(".pop").hide()
+        let id = $(this).data('id')
+        $("#a" + id).show()
+    })
+
     function good(id) {
         $.post("./api/good.php", {
             id
